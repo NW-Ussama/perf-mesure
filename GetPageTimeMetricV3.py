@@ -3,9 +3,13 @@ from tkinter import messagebox
 import requests
 import time
 import statistics
+import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import math
+
+# Use TkAgg backend for macOS compatibility
+matplotlib.use('TkAgg')
 
 # Function to perform requests and display results
 def perform_requests():
