@@ -88,13 +88,17 @@ def perform_requests():
 root = tk.Tk()
 root.title("GET Request Duration Checker")
 
-# Create a main frame for layout management
-main_frame = tk.Frame(root)
-main_frame.pack(padx=10, pady=10)
+# Set the window geometry and make it resizable
+root.geometry("1000x600")  # Set a reasonable initial size
+root.grid_rowconfigure(0, weight=1)  # Make rows and columns stretchable
+root.grid_columnconfigure(0, weight=1)
 
-# Left Column (Input fields and result stats)
+main_frame = tk.Frame(root)
+main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+
+# Ensure the input fields and result text frame expand
 input_frame = tk.Frame(main_frame)
-input_frame.grid(row=0, column=0, padx=10, pady=10)
+input_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
 # URL Input Label and Field
 url_label = tk.Label(input_frame, text="Link:")
@@ -118,37 +122,43 @@ repeat_entry.grid(row=2, column=1, pady=5)
 submit_button = tk.Button(input_frame, text="Perform Requests", command=perform_requests)
 submit_button.grid(row=3, columnspan=2, pady=10)
 
-# Result stats block (under inputs)
+# Ensure the result frame and result text expand
 result_frame = tk.Frame(input_frame)
 result_frame.grid(row=4, column=0, columnspan=2, pady=10)
 
 # Text area to show stats results
 result_text = tk.Text(result_frame, height=6, width=50, state=tk.DISABLED)
-result_text.pack()
+result_text.pack(fill=tk.BOTH, expand=True)
 
-# Middle Column (Histogram Plot)
+# Ensure the histogram and line chart frames expand and fill
 hist_frame = tk.Frame(main_frame)
-hist_frame.grid(row=0, column=1, padx=10, pady=10)
+hist_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
 # Create a figure and axis for the histogram plot
 fig_hist, ax_hist = plt.subplots()
 
 # Create the canvas for the histogram plot in the Tkinter window
 canvas_hist = FigureCanvasTkAgg(fig_hist, master=hist_frame)
-canvas_hist.draw()
-canvas_hist.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+canvas_hist.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
 # Right Column (Line Plot of durations)
 line_frame = tk.Frame(main_frame)
-line_frame.grid(row=0, column=2, padx=10, pady=10)
+line_frame.grid(row=0, column=2, padx=10, pady=10, sticky="nsew")
 
 # Create a figure and axis for the line plot
 fig_line, ax_line = plt.subplots()
 
 # Create the canvas for the line plot in the Tkinter window
 canvas_line = FigureCanvasTkAgg(fig_line, master=line_frame)
-canvas_line.draw()
-canvas_line.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+canvas_line.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+# Adjust grid configurations to make the widgets stretchable
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
+
+main_frame.grid_rowconfigure(0, weight=1)
+main_frame.grid_columnconfigure(1, weight=1)
+main_frame.grid_columnconfigure(2, weight=1)
 
 # Run the GUI
 root.mainloop()
