@@ -1,34 +1,21 @@
 import tkinter as tk
 
-print("tkinter.TkVersion :: ", tk.TkVersion)
-
-# Function to handle button click
-def on_button_click():
-    input_text = text_entry.get()
-    print(input_text)
+# Function to print the input content
+def print_input():
+    input_content = input_entry.get()
+    print("Input:", input_content)
 
 # UI Setup
 root = tk.Tk()
-root.title("Tkinter Debug Example")
+root.title("Minimal Example")
 
-# Set window geometry
-root.geometry("300x150")
+# Create and pack the input field
+input_entry = tk.Entry(root, width=50)
+input_entry.pack(padx=10, pady=10)
 
-# Create a frame for better organization
-frame = tk.Frame(root)
-frame.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+# Create and pack the button
+submit_button = tk.Button(root, text="Print Input", command=print_input)
+submit_button.pack(padx=10, pady=10)
 
-# Create a label
-label = tk.Label(frame, text="Enter something:")
-label.pack(pady=5)
-
-# Create a text input
-text_entry = tk.Entry(frame, width=30)
-text_entry.pack(pady=5)
-
-# Create a button
-button = tk.Button(frame, text="Print Input", command=on_button_click)
-button.pack(pady=10)
-
-# Start the Tkinter event loop
+# Run the GUI
 root.mainloop()
