@@ -10,6 +10,9 @@ const repetitions = parseInt(process.env.REPETITIONS, 10) || 50;
 // Read URLs from environment variables and split by comma
 const urlsToTest = process.env.URLS ? process.env.URLS.split(',') : [];
 
+// Read the cookie from the environment variables
+const authCookie = process.env.COOKIE;
+
 if (urlsToTest.length === 0) {
     console.error("No URLs provided in the .env file.");
     process.exit(1);
@@ -41,7 +44,11 @@ async function measureLoadTime(urls, repetitions) {
         for (const url of urls) {
             const startTime = Date.now(); // Start time
             try {
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    headers: {
+                        'Cookie': authCookie // Attach the cookie for authentication
+                    }
+                });
                 const endTime = Date.now(); // End time
                 const duration = endTime - startTime; // Calculate duration
 
