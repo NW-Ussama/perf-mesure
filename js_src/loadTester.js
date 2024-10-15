@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import axios from 'axios'; // Import axios
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
@@ -44,7 +44,7 @@ async function measureLoadTime(urls, repetitions) {
         for (const url of urls) {
             const startTime = Date.now(); // Start time
             try {
-                const response = await fetch(url, {
+                const response = await axios.get(url, {
                     headers: {
                         'Cookie': authCookie // Attach the cookie for authentication
                     }
