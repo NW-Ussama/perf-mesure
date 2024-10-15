@@ -1,0 +1,23 @@
+{
+    "name": "load-tester",
+    "version": "1.0.0",
+    "description": "A Node.js script to measure the average load time of multiple URLs and compute metrics.",
+    "main": "loadTester.js",
+    "type": "module",
+    "scripts": {
+      "start": "node loadTester.js"
+    },
+    "keywords": [
+      "load",
+      "tester",
+      "performance",
+      "http",
+      "metrics"
+    ],
+    "author": "Ussama",
+    "license": "MIT",
+    "dependencies": {
+      "node-fetch": "^3.3.1"
+    }
+  }
+  
