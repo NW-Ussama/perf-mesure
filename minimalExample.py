@@ -17,7 +17,7 @@ frame = tk.Frame(root, bg='lightgray')
 frame.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
 
 # Create and pack the input field
-input_entry = tk.Entry(frame, width=50, bg='white', fg='black')
+input_entry = tk.Entry(frame, width=50, bg='white', fg='black')  # Set fg (foreground) to black
 input_entry.pack(pady=5)
 
 # Create and pack the button
