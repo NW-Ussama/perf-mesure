@@ -1,21 +1,29 @@
 import tkinter as tk
 
-def perform_requests():
-    print("Button clicked!")
+# Function to handle button click
+def on_button_click():
+    # Get the content of the text input
+    input_text = text_entry.get()
+    print(input_text)
 
+# UI Setup
 root = tk.Tk()
-root.title("Test Layout")
+root.title("Minimal Tkinter Example")
 
-# Basic layout
-frame = tk.Frame(root)
-frame.pack(padx=10, pady=10)
+# Set window geometry
+root.geometry("300x150")
 
-url_label = tk.Label(frame, text="Link:")
-url_label.grid(row=0, column=0, sticky='e')
-url_entry = tk.Entry(frame, width=50)
-url_entry.grid(row=0, column=1)
+# Create a label
+label = tk.Label(root, text="Enter something:")
+label.pack(pady=5)
 
-submit_button = tk.Button(frame, text="Perform Requests", command=perform_requests)
-submit_button.grid(row=1, columnspan=2)
+# Create a text input
+text_entry = tk.Entry(root, width=30)
+text_entry.pack(pady=5)
 
+# Create a button
+button = tk.Button(root, text="Print Input", command=on_button_click)
+button.pack(pady=10)
+
+# Start the Tkinter event loop
 root.mainloop()
