@@ -1,4 +1,19 @@
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
+// Read number of repetitions from environment variables or default to 50
+const repetitions = parseInt(process.env.REPETITIONS, 10) || 50;
+
+// Read URLs from environment variables and split by comma
+const urlsToTest = process.env.URLS ? process.env.URLS.split(',') : [];
+
+if (urlsToTest.length === 0) {
+    console.error("No URLs provided in the .env file.");
+    process.exit(1);
+}
 
 // Function to create a delay
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -74,12 +89,4 @@ async function measureLoadTime(urls, repetitions) {
     console.table(table);
 }
 
-// Example usage
-const urlsToTest = [
-    'https://jsonplaceholder.typicode.com/posts',
-    'https://jsonplaceholder.typicode.com/comments',
-    'https://jsonplaceholder.typicode.com/albums',
-];
-
-const repetitions = 50; // Number of repetitions
 measureLoadTime(urlsToTest, repetitions);
