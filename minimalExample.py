@@ -9,8 +9,8 @@ def print_input():
 root = tk.Tk()
 root.title("Minimal Example")
 
-# Create and pack the input field with a visible background color
-input_entry = tk.Entry(root, width=50, bg='white')  # Set background to white
+# Create and pack the input field with visible foreground and background colors
+input_entry = tk.Entry(root, width=50, bg='white', fg='black')  # Set background to white and text to black
 input_entry.pack(padx=10, pady=10)
 
 # Create and pack the button
