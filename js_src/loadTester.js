@@ -19,6 +19,9 @@ if (urlsToTest.length === 0) {
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function measureLoadTime(urls, repetitions) {
+    // Start total execution time measurement
+    const scriptStartTime = Date.now();
+
     const results = {}; // Object to store data for each URL
 
     // Initialize result structure for each URL
@@ -84,6 +87,12 @@ async function measureLoadTime(urls, repetitions) {
     });
 
     console.table(table);
+
+    // Log total execution time
+    const scriptEndTime = Date.now();
+    const totalExecutionTime = (scriptEndTime - scriptStartTime) / 1000;
+    console.log(`\nTotal Execution Time: ${totalExecutionTime.toFixed(2)} seconds`);
 }
 
+// Call the function
 measureLoadTime(urlsToTest, repetitions);
