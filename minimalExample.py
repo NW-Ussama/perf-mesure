@@ -9,13 +9,20 @@ def print_input():
 root = tk.Tk()
 root.title("Minimal Example")
 
+# Set the background color of the root window
+root.configure(bg='lightgray')
+
+# Create a frame to hold the input and button
+frame = tk.Frame(root, bg='lightgray')
+frame.pack(padx=10, pady=10)
+
 # Create and pack the input field with visible foreground and background colors
-input_entry = tk.Entry(root, width=50, bg='white', fg='black', highlightbackground='black', highlightcolor='black')
-input_entry.pack(padx=10, pady=10)
+input_entry = tk.Entry(frame, width=50, bg='white', fg='black')
+input_entry.pack(pady=5)
 
 # Create and pack the button
-submit_button = tk.Button(root, text="Print Input", command=print_input)
-submit_button.pack(padx=10, pady=10)
+submit_button = tk.Button(frame, text="Print Input", command=print_input)
+submit_button.pack(pady=5)
 
 # Run the GUI
 root.mainloop()
