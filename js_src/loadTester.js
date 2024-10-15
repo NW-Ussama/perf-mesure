@@ -35,7 +35,7 @@ async function measureLoadTime(urls, repetitions) {
     for (let i = 0; i < repetitions; i++) {
         console.log(`Starting round ${i + 1} of ${repetitions}...`);
 
-        const promises = urls.map(async (url) => {
+        for (const url of urls) {
             const startTime = Date.now(); // Start time
             try {
                 const response = await fetch(url);
@@ -55,10 +55,7 @@ async function measureLoadTime(urls, repetitions) {
                 results[url].errorCount++;
                 results[url].errorTimes.push(duration);
             }
-        });
-
-        // Wait for all URLs to finish in this round
-        await Promise.all(promises);
+        }
 
         // Wait 1 second before the next round
         await delay(1000);
