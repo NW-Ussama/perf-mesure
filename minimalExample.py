@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 
 # Function to print the input content
 def print_input():
@@ -14,15 +13,15 @@ root.title("Minimal Example")
 root.configure(bg='lightgray')
 
 # Create a frame to hold the input and button
-frame = ttk.Frame(root, padding="10")
-frame.pack(fill=tk.BOTH, expand=True)
+frame = tk.Frame(root, bg='lightgray')
+frame.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
 
-# Create and pack the input field with ttk
-input_entry = ttk.Entry(frame, width=50)
+# Create and pack the input field
+input_entry = tk.Entry(frame, width=50, bg='white', fg='black')
 input_entry.pack(pady=5)
 
 # Create and pack the button
-submit_button = ttk.Button(frame, text="Print Input", command=print_input)
+submit_button = tk.Button(frame, text="Print Input", command=print_input, bg='blue', fg='white')
 submit_button.pack(pady=5)
 
 # Run the GUI
