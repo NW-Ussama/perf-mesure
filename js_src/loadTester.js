@@ -63,6 +63,11 @@ async function measureLoadTime(urls, repetitions) {
     }
 
     console.log('\nMetrics Summary:');
+    let totalSuccessTime = 0;
+    let totalSuccessCount = 0;
+    let totalErrorTime = 0;
+    let totalErrorCount = 0;
+
     const table = Object.entries(results).map(([url, data]) => {
         const totalCalls = data.successCount + data.errorCount;
         const successRate = ((data.successCount / totalCalls) * 100).toFixed(2) + '%';
@@ -74,6 +79,11 @@ async function measureLoadTime(urls, repetitions) {
             ? (data.errorTimes.reduce((sum, time) => sum + time, 0) / data.errorTimes.length).toFixed(2) + ' ms'
             : 'N/A';
 
+        totalSuccessTime += data.successTimes.reduce((sum, time) => sum + time, 0);
+        totalSuccessCount += data.successTimes.length;
+        totalErrorTime += data.errorTimes.reduce((sum, time) => sum + time, 0);
+        totalErrorCount += data.errorTimes.length;
+
         return {
             URL: url,
             '% 200': successRate,
@@ -84,6 +94,13 @@ async function measureLoadTime(urls, repetitions) {
     });
 
     console.table(table);
+
+    const avgTotalSuccessTime = totalSuccessCount ? (totalSuccessTime / totalSuccessCount).toFixed(2) + ' ms' : 'N/A';
+    const avgTotalErrorTime = totalErrorCount ? (totalErrorTime / totalErrorCount).toFixed(2) + ' ms' : 'N/A';
+
+    console.log('\nOverall Averages:');
+    console.log(`Avg Response Time (200) for All Pages: ${avgTotalSuccessTime}`);
+    console.log(`Avg Response Time (Error) for All Pages: ${avgTotalErrorTime}`);
 
     const scriptEndTime = Date.now();
     const totalExecutionTime = (scriptEndTime - scriptStartTime) / 1000;
